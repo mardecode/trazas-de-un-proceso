@@ -10,8 +10,10 @@
 
 <body>
 
+<!-- MAIN -->
 <div id="main" >
 
+    <!-- Fila 1 -->
   <div class="row">
 
     <div class="col s6">
@@ -33,52 +35,57 @@
         </div>
       </div>
     </div>
-
+  <!-- Fin Fila 1 -->
   </div>
-<div>
+
     
-  <h4>Crear un nuevo Proceso:</h4>
-  <div class="row">
+    <h4>Crear un nuevo Proceso:</h4>
 
-  <div class="col s3">
-    <label for="name">Nombre Proceso</label>
-    <input id="name" type="text" placeholder="proceso1" v-model="newProcess.name">
-  </div>
-  
-  <div class="col s2">
-    <label for="time"> Tiempo </label>
-    <input id="timer" type="number" placeholder="n segs" min="1" max="15" v-model="newProcess.time">
-  </div>
-
-
-    <div class = "col s7">
-         <input type="checkbox" id="recurso1" />
-      <label for="recurso1">Teclado</label>
-             <input type="checkbox" id="recurso2" />
-      <label for="recurso2">Mouse</label>
-             <input type="checkbox" id="recurso3" />
-      <label for="recurso3">Parlantes</label>
-             <input type="checkbox" id="recurso4" />
-      <label for="recurso4">Impresora</label>
-             <input type="checkbox" id="recurso5" />
-      <label for="recurso5">Micrófono</label>
-             <input type="checkbox" id="recurso6" />
-      <label for="recurso6">Otro</label>
+    <!-- Fila 2 -->
+    <div class="row">
       
+      <div class="col s3">
+        <label for="name">Nombre Proceso</label>
+        <input id="name" type="text" placeholder="proceso1" v-model="newProcess.name">
+      </div>
       
-  </div>
-  
-</div>
+      <div class="col s2">
+        <label for="time"> Tiempo </label>
+        <input id="timer" type="number" placeholder="n segs" min="1" max="15" v-model="newProcess.time">
+      </div>
 
-</div>
-<button class="btn waves-effect waves-light" type="submit" name="action" v-on:click="crearProceso" >Nuevo
-    <i class="material-icons right">send</i>
-  </button>
+      <div class = "col s5">
+        <input type="checkbox" id="recurso1" />
+        <label for="recurso1">Teclado</label>
+        <input type="checkbox" id="recurso2" />
+        <label for="recurso2">Mouse</label>
+        <input type="checkbox" id="recurso3" />
+        <label for="recurso3">Parlantes</label>
+        <input type="checkbox" id="recurso4" />
+        <label for="recurso4">Impresora</label>
+        <input type="checkbox" id="recurso5" />
+        <label for="recurso5">Micrófono</label>
+        <input type="checkbox" id="recurso6" />
+        <label for="recurso6">Otro</label>     
+      </div>
 
+      <!-- FIn Fila 2 -->
 
+      <div class="col s2">
+        <button class="btn waves-effect waves-light" type="submit" name="action" v-on:click="crearProceso" >    Nuevo
+            <i class="material-icons right">send</i>
+         </button>
 
-  {{ procesos}} 
+      </div>
 
+    </div>
+      
+    
+
+    Proceso: <br>
+          {{ procesos}} 
+
+<!-- Fin MAIN -->
 </div>
 
 <script type="text/javascript" src="main.js"></script>
