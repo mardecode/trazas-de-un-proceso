@@ -11,7 +11,7 @@
 <body>
 
 <!-- MAIN -->
-<div id="main" >
+<div id="main" style="padding-left: 8px">
 
     <!-- Fila 1 -->
   <div class="row">
@@ -39,9 +39,10 @@
   </div>
 
     
-    <h4>Crear un nuevo Proceso:</h4>
+    <h5>Crear un nuevo Proceso:</h5>
 
     <!-- Fila 2 -->
+    <form>
     <div class="row">
       
       <div class="col s3">
@@ -55,21 +56,20 @@
       </div>
 
       <div class = "col s5">
-        <input type="checkbox" id="recurso1" />
+        <input type="checkbox" id="recurso1" v-model="newProcess.recursos" value="teclado"/>
         <label for="recurso1">Teclado</label>
-        <input type="checkbox" id="recurso2" />
+        <input type="checkbox" id="recurso2" v-model="newProcess.recursos" value="mouse"/>
         <label for="recurso2">Mouse</label>
-        <input type="checkbox" id="recurso3" />
+        <input type="checkbox" id="recurso3" v-model="newProcess.recursos" value="parlantes"/>
         <label for="recurso3">Parlantes</label>
-        <input type="checkbox" id="recurso4" />
+        <input type="checkbox" id="recurso4" v-model="newProcess.recursos" value="impresora"/>
         <label for="recurso4">Impresora</label>
-        <input type="checkbox" id="recurso5" />
+        <input type="checkbox" id="recurso5" v-model="newProcess.recursos" value="microfono"/>
         <label for="recurso5">Micrófono</label>
-        <input type="checkbox" id="recurso6" />
-        <label for="recurso6">Otro</label>     
+        <input type="checkbox" id="recurso6" v-model="newProcess.recursos" value="camara"/>
+        <label for="recurso6">Cámara</label>     
       </div>
 
-      <!-- FIn Fila 2 -->
 
       <div class="col s2">
         <button class="btn waves-effect waves-light" type="submit" name="action" v-on:click="crearProceso" >    Nuevo
@@ -78,12 +78,36 @@
 
       </div>
 
+      <!-- FIn Fila 2 -->
     </div>
-      
-    
+    </form>   
 
     Proceso: <br>
-          {{ procesos}} 
+    {{ procesos}} 
+
+    <!-- Fila 3 -->
+    <div class="row">
+        <div class="col s2">
+            <a class="waves-effect waves-light btn">Teclado</a>
+        </div>
+        <div class="col s2">
+            <a class="waves-effect waves-light btn">Mouse</a>
+        </div>
+        <div class="col s2">
+            <a class="waves-effect waves-light btn">Parlantes</a>
+        </div>
+        <div class="col s2">
+            <a class="waves-effect waves-light btn">Impresora</a>
+        </div>
+        <div class="col s2">
+            <a class="waves-effect waves-light btn">Micrófono</a>
+        </div>
+        <div class="col s2">
+            <a class="waves-effect waves-light btn">Cámara</a>
+        </div>
+
+    </div>
+    <!-- FIn fila 3 -->
 
 <!-- Fin MAIN -->
 </div>
