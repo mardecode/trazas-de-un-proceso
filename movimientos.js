@@ -1,6 +1,6 @@
  var layer = new collie.Layer({
         width : 1300,
-        height : 200
+        height : 315
     });
      
 //CAJA LISTO
@@ -10,7 +10,7 @@
         height: 150,
         backgroundColor: '#8DFF33',
         x:30,
-        y:20
+        y:10
     }).addTo(layer);
 //CAJA EJECUTANDO
     var ejecutando = new collie.DisplayObject({
@@ -19,7 +19,7 @@
         height:150,
         backgroundColor:'pink',
         x : 500,
-        y:20
+        y:10
     }).addTo(layer);
 //CAJA FINALIZADO
     var finalizado = new collie.DisplayObject({
@@ -27,7 +27,16 @@
         height:150,
         backgroundColor:'#33FFC4',
         x : 950,
-        y:20
+        y:10
+    }).addTo(layer);
+
+//CAJA BLOQUEADO
+    var bloqueado = new collie.DisplayObject({
+        width:360,
+        height:150,
+        backgroundColor:'#FFCE33',
+        x : 500,
+        y:180
     }).addTo(layer);
 
 
@@ -41,22 +50,30 @@
         backgroundColor : '#6B33FF',
         fontSize:30,
         rangeX:[0,330],
+        rangeY:[0,270],
         fontColor: "black",
-    }).text(" 1").addTo(layer);
+    }).text(" 1");
+
+function createEv(id,time, recursos) {
+    
+}
 
     collie.Timer.repeat(function (e) {
+
         console.log(e.count);
         if(e.count == 5){
-            //collie.Renderer.stop();
             arreglo[0].addTo(layer);
 
         }
 
         if(e.count == 10){
-            arreglo[0].set("rangeX", [280,500]);
+            arreglo[0].set("rangeX", [0,550]);
+        }
+        if (e.count ==15) {
+            arreglo[0].set("velocityY",100);
         }
 
-//        collie.Renderer.start();
+
     }, 1000,{loop:0});
      
     
