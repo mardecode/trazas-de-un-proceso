@@ -1,8 +1,86 @@
 <html>
-<head></head>
-<body>    
-<script type="text/javascript" src="collie.min.js"></script>
-<div id="container" class="container"></div>
+
+<body>
+
+<script src="collie.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script type="text/javascript" src="vue.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div id="main" class="container">
+
+  <div class="row">
+
+    <div class="col s6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Sistemas Operativos</span>
+          <p>Modelo 5 estados </p>
+          <p>Trazas de un estdo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Gestor</span>
+          <p>Bernal Chahuayo, Luis Antonio </p>
+          <p>Lacuaña Apaza, Margarita</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h4>Crear un nuevo Proceso:</h4>
+  <div class="row">
+
+  <div class="col s3">
+    <label for="name">Nombre Proceso</label>
+    <input id="name" type="text" placeholder="proceso1" v-model="newProcess.name">
+  </div>
+  
+  <div class="col s2">
+    <label for="time"> Tiempo </label>
+    <input id="timer" type="number" placeholder="n segs" min="1" max="15" v-model="newProcess.time">
+  </div>
+
+
+    <div class = "col s7">
+         <input type="checkbox" id="recurso1" />
+      <label for="recurso1">Teclado</label>
+             <input type="checkbox" id="recurso2" />
+      <label for="recurso2">Mouse</label>
+             <input type="checkbox" id="recurso3" />
+      <label for="recurso3">Parlantes</label>
+             <input type="checkbox" id="recurso4" />
+      <label for="recurso4">Impresora</label>
+             <input type="checkbox" id="recurso5" />
+      <label for="recurso5">Micrófono</label>
+             <input type="checkbox" id="recurso6" />
+      <label for="recurso6">Otro</label>
+      
+      
+  </div>
+  
+</div>
+
+<button class="btn waves-effect waves-light" type="submit" name="action" v-on:click="crearProceso" >Nuevo
+    <i class="material-icons right">send</i>
+  </button>
+
+
+
+  {{ procesos}} 
+
+</div>
+
+<script type="text/javascript" src="main.js"></script>
+
+<div id="container"></div>
 <script type="text/javascript">
 
     
