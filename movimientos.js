@@ -39,6 +39,7 @@
         y:180
     }).addTo(layer);
 
+/*
 
 var ejemplo = new collie.Text({
         width : 35,
@@ -68,7 +69,8 @@ var ejemplo2 = new collie.Text({
     var arreglo = new Array(1);
     var arreglo2 = new Array();
 
-    arreglo[0] = new collie.Text({
+    arreglo[0] = {id:2, time:5, o:null};
+    arreglo[0].o = new collie.Text({
         width : 35,
         height : 35,
         y: 55,
@@ -80,7 +82,9 @@ var ejemplo2 = new collie.Text({
         fontColor: "black",
     }).text(" 1");
 
-    arreglo.push(ejemplo);
+
+    arreglo.push({ id: 3, time:4 ,o:ejemplo});
+    */
 /*
 function createEv(id,time, recursos) {
     nuevo = new collie.Text({
@@ -99,18 +103,19 @@ function createEv(id,time, recursos) {
 }
 */
     collie.Timer.repeat(function (e) {
-
         console.log(e.count);
+        console.log(procesosGrande);
+/*
 //        console.log(app.procesos);
 
         console.log(arreglo);
         if(e.count == 1){
-            arreglo[0].addTo(layer);
+            //arreglo[0].o.addTo(layer);
         }
         
         if (e.count ==5) {
             //arreglo[0].set("velocityY",100);
-            arreglo[1].addTo(layer);
+            arreglo[1].o.addTo(layer);
         }
         if (e.count == 10 ) {
             arreglo.pop();
@@ -128,7 +133,7 @@ function createEv(id,time, recursos) {
             ejemplo.addTo(layer);
         }
 
-
+*/
 
 
     }, 1000,{loop:0});
