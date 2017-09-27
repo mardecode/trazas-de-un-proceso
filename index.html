@@ -16,25 +16,18 @@
     <!-- Fila 1 -->
   <div class="row">
 
-    <div class="col s6">
+    <div class="col s12">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
-          <span class="card-title">Sistemas Operativos</span>
-          <p>Modelo 5 estados, Trazas de un estado </p>
-          
+
+          <p>
+              Bernal Chahuayo, Luis Antonio  /   Lacuaña Apaza, Margarita
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="col s6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Gestor</span>
-          <p>Bernal Chahuayo, Luis Antonio  /   Lacuaña Apaza, Margarita</p>
-          
-        </div>
-      </div>
-    </div>
+    
   <!-- Fin Fila 1 -->
   </div>
 
@@ -42,17 +35,17 @@
     <h5>Crear un nuevo Proceso:</h5>
 
     <!-- Fila 2 -->
-    <form>
+    
     <div class="row">
       
       <div class="col s3">
-        <label for="name">Nombre Proceso</label>
-        <input id="name" type="text" placeholder="proceso1" v-model="newProcess.name">
+        
+        <input id="name" type="text" placeholder="Nombre proceso" v-model="newProcess.name">
       </div>
       
       <div class="col s2">
-        <label for="time"> Tiempo </label>
-        <input id="timer" type="number" placeholder="n segs" min="1" max="15" v-model="newProcess.time">
+        
+        <input id="timer" type="number" placeholder="tiempo" min="1" max="15" v-model="newProcess.time">
       </div>
 
       <div class = "col s5">
@@ -80,7 +73,8 @@
 
       <!-- FIn Fila 2 -->
     </div>
-    </form>   
+    
+
 
     Proceso: <br>
     {{ procesos}} 
