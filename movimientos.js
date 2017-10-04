@@ -149,8 +149,10 @@ function refreshTiempo() {
 function derecha() {
     procesosBloqueado.lastIndexOf
 }
+var terminoMov = false;
 
 function refreshToBloqueo() {
+    terminoMov = false;
     var nuevoB = procesosEjecutando.pop();
     procesosBloqueado.push(nuevoB);
 
@@ -163,6 +165,7 @@ function refreshToBloqueo() {
     },1500);
     setTimeout(function(){
         nuevoB.o.set("velocityX",-200);
+        terminoMov= true;
     //nuevoB.o.set("velocityY",200);
     },2800);
 
