@@ -4,43 +4,104 @@
     });
      
 //CAJA LISTO
-    var listo = new collie.DisplayObject({
+    var listo = new collie.Text({
         
         width: 360,
         height: 100,
         backgroundColor: '#8DFF33',
         x:30,
-        y:10
-    }).addTo(layer);
+        y:10,
+        fontSize:20,
+        fontColor:'#01012C',
+        textAlign:'center'
+    }).text(" LISTO").addTo(layer);
 //CAJA EJECUTANDO
-    var ejecutando = new collie.DisplayObject({
-        
+    var ejecutando = new collie.Text({
         width:360,
         height:100,
         backgroundColor:'pink',
         x : 500,
-        y:10
-    }).addTo(layer);
+        y:10,
+        fontSize:20,
+        fontColor:'#01012C',
+        textAlign:'center'
+    }).text(" EJECUTANDO").addTo(layer);
 //CAJA FINALIZADO
-    var finalizado = new collie.DisplayObject({
+    var finalizado = new collie.Text({
         width:360,
         height:100,
         backgroundColor:'#33FFC4',
         x : 950,
-        y:10
-    }).addTo(layer);
-
+        y:10,
+        fontSize:20,
+        fontColor:'#01012C',
+        textAlign:'center'
+    }).text(" FINALIZADO").addTo(layer);
 //CAJA BLOQUEADO
-    var bloqueado = new collie.DisplayObject({
+    var bloqueado = new collie.Text({
         width:360,
         height:100,
         backgroundColor:'#FFCE33',
         x : 500,
-        y:180
-    }).addTo(layer);
+        y:180,
+        fontSize:20,
+        fontColor:'#01012C',
+        textAlign:'center'
+    }).text(" BLOQUEADO").addTo(layer);
 
+var line = new collie.Polyline({
+    closePath : true
+}).addTo(layer);
+line.setPointData([
+    [390, 60],
+    [500, 60]
+]);
+
+
+var line2 = new collie.Polyline({
+    closePath : true
+}).addTo(layer);
+line2.setPointData([
+    [860, 60],
+    [950, 60]
+]); 
+var line3 = new collie.Polyline({
+    closePath : true
+}).addTo(layer);
+line3.setPointData([
+    [445, 60],
+    [445, 230],
+
+]);
+
+var line31 = new collie.Polyline({
+    closePath : true
+}).addTo(layer);
+line31.setPointData([
+    
+    [445, 230],
+    [500, 230]
+]);
+
+var line4 = new collie.Polyline({
+    closePath : true
+}).addTo(layer);
+line4.setPointData([
+    [905, 60],
+    [905, 230],
+    
+]);
+
+
+var line41 = new collie.Polyline({
+    closePath : true
+}).addTo(layer);
+line41.setPointData([
+    
+    [905, 230],
+    [860,230]
+]);
 /*
-
 var ejemplo = new collie.Text({
         width : 35,
         height : 35,
@@ -54,19 +115,9 @@ var ejemplo = new collie.Text({
     }).text(" 1");
 
 
-var ejemplo2 = new collie.Text({
-        width : 35,
-        height : 35,
-        y: 95,
-        velocityX : 200,
-        backgroundColor : '#6B33FF',
-        fontSize:30,
-        rangeX:[0,800],
-        rangeY:[0,270],
-        fontColor: "black",
-    }).text(" 2");
 
-    var arreglo = new Array(1);
+
+    var arreglo = new Array();
     var arreglo2 = new Array();
 
     arreglo[0] = {id:2, time:5, o:null};
@@ -98,9 +149,6 @@ function createEv(id,time, recursos) {
         rangeY:[0,270],
         fontColor: "black",
     }).text(id);
-
-    arreglo.push(nuevo);
-}
 */
     collie.Timer.repeat(function (e) {
         console.log(e.count);
@@ -124,13 +172,9 @@ function createEv(id,time, recursos) {
         }
 
         if (e.count == 15 ) {
+
             //collie.Renderer.stop();
             arreglo2[0].leave();
-        }
-        if (e.count == 20 ) {
-            //collie.Renderer.stop();
-            ejemplo = ejemplo2;
-            ejemplo.addTo(layer);
         }
 
 */
