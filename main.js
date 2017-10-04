@@ -22,7 +22,12 @@ var app = new Vue({
             textAlign:'center'
         }).text(" "+this.contador).addTo(layer);
         
-        procesosListo.push({id:this.contador, time:this.newProcess.time , o:nuevo});
+        procesosListo.push({
+          id:this.contador,
+          time:this.newProcess.time , 
+          o:nuevo ,
+          recursos:this.newProcess.recursos
+        });
 
         
         this.newProcess.time = "";

@@ -196,8 +196,21 @@ function refreshBloqueado() {
     inicio = 500;
     for (var i = 0; i < procesosBloqueado.length; i++) {
         procesosBloqueado[i].o.set("velocityX",-200);
-        procesosBloqueado[i].o.set("rangeX",[inicio,1000]);
-        inicio += 40;
+        if(procesosBloqueado[i].recursos.length != 0){
+            inicio += 40;
+            procesosBloqueado[i].o.set("rangeX",[inicio,1000]);
+        }
+        else{
+            procesosBloqueado[i].o.set("rangeX",[30,1000]);
+            console.log("1", procesosBloqueado[i]);
+            var ip  = i;
+            setTimeout(function(){
+                console.log("2", ip , procesosBloqueado ,procesosBloqueado[i]);
+                procesosBloqueado[ip].o.set("rangeY",[45,230]);
+                procesosBloqueado[ip].o.set("velocityY",-200);
+            },4000, ip);
+        }
+        
     }
 }
 
@@ -242,7 +255,8 @@ var cont2 = 0;
             }
         }
 
-        if(procesosBloqueado.length != 0){
+        if(procesosBloqueado.length != 0 && terminoMov){
+
             refreshBloqueado();
         }
 /*
