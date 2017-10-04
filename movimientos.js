@@ -1,6 +1,5 @@
  var procesosListo = new Array();
  var procesosEjecutando = new Array();
-
  var procesosBloqueado = new Array();
 
 var tiempoLimite = 5;
@@ -169,10 +168,23 @@ function refreshToBloqueo() {
 
 }
 function refreshBloqueado() {
-  var hola =1;  
+    console.log("Here BLOQUEADO");
+    inicio = 500;
+    for (var i = 0; i < procesosBloqueado.length; i++) {
+        procesosBloqueado[i].o.set("velocityX",-200);
+        procesosBloqueado[i].o.set("rangeX",[inicio,1000]);
+        inicio += 40;
+    }
 }
+
 function refreshFinalizado(argument) {
-    var hoo =1;
+    var nuevoB = procesosEjecutando.pop();
+    nuevoB.o.set("rangeX",[0,1300]);
+    
+    setTimeout(function(){
+        nuevoB.o.leave();
+    }, 5000);
+    
 }
 
 var seguir  = true;
@@ -204,6 +216,10 @@ var cont2 = 0;
                     refreshTiempo();    
                 }
             }
+        }
+
+        if(procesosBloqueado.length != 0){
+            refreshBloqueado();
         }
 /*
 //        console.log(app.procesos);
