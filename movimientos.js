@@ -55,6 +55,17 @@ var tiempoLimite = 5;
         textAlign:'center'
     }).text(" BLOQUEADO").addTo(layer);
 
+var tiempo1 = new collie.Text({
+        width:50,
+        height:20,
+        backgroundColor:'white',
+        x : 663,
+        y:130,
+        fontSize:30,
+        fontColor:'black',
+        textAlign:'center'
+    }).text("0").addTo(layer);
+
 var line = new collie.Polyline({
     closePath : true
     }).addTo(layer);
@@ -74,8 +85,8 @@ var line3 = new collie.Polyline({
     closePath : true
     }).addTo(layer);
 line3.setPointData([
-    [445, 60],
-    [445, 230],
+    [47, 110],
+    [47, 230],
 ]);
 
 var line31 = new collie.Polyline({
@@ -83,7 +94,7 @@ var line31 = new collie.Polyline({
     }).addTo(layer);
 line31.setPointData([
     
-    [445, 230],
+    [47, 230],
     [500, 230]
 ]);
 
@@ -121,20 +132,25 @@ function refreshEjecutando() {
 //    console.log("ejecutando !!!!!!!!!!!!!!!!1");
 //  console.log(procesosEjecutando);
         procesosEjecutando[0].o.set("rangeX",[0,663]);
+        tiempo1.text(procesosEjecutando[0].time);
 
 }
 var limite;
 function refreshTiempo() {
     //limite = count + procesosEjecutando[0].time;
     console.log("refreshTiempo");
+    //tiempo1.text(procesosEjecutando[0].time);
     procesosEjecutando[0].time --;
-    cont2++;
-    console.log("contador 2  = "+cont2);
+    tiempo1.text(procesosEjecutando[0].time);
+    //console.log("time procesos  = "+procesosEjecutando[0].time);
     if (cont2 >=5 ) {
         cont2 = 0;
         seguir=false;
         console.log("refreshToBloqueo !!!!!!!!!!1");
         refreshToBloqueo();
+        setTimeout(function(){
+           // tiempo1.text("- -");
+        },1500);
     }
     if(procesosEjecutando.length != 0){
         if (procesosEjecutando[0].time == 0) {
@@ -142,8 +158,13 @@ function refreshTiempo() {
             cont2 = 0;
             seguir=false;
             refreshFinalizado();
+            tiempo1.text(cont2);
+            setTimeout(function(){
+                tiempo1.text("- -");
+            },1500);
         }
     }
+    cont2++;
 }
 
 function derecha() {
