@@ -208,6 +208,7 @@ function refreshBloqueado() {
                 console.log("2", ip , procesosBloqueado ,procesosBloqueado[i]);
                 procesosBloqueado[ip].o.set("rangeY",[45,230]);
                 procesosBloqueado[ip].o.set("velocityY",-200);
+                procesosListo.push(procesosBloqueado.shift() ) ;  
             },4000, ip);
         }
         
