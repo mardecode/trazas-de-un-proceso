@@ -1,3 +1,10 @@
+ var procesosListo = new Array();
+ var procesosEjecutando = new Array();
+
+ var procesosBloqueado = new Array();
+
+var tiempoLimite = 5;
+
  var layer = new collie.Layer({
         width : 1300,
         height : 300
@@ -51,32 +58,30 @@
 
 var line = new collie.Polyline({
     closePath : true
-}).addTo(layer);
+    }).addTo(layer);
 line.setPointData([
     [390, 60],
     [500, 60]
 ]);
 
-
 var line2 = new collie.Polyline({
     closePath : true
-}).addTo(layer);
+    }).addTo(layer);
 line2.setPointData([
     [860, 60],
     [950, 60]
 ]); 
 var line3 = new collie.Polyline({
     closePath : true
-}).addTo(layer);
+    }).addTo(layer);
 line3.setPointData([
     [445, 60],
     [445, 230],
-
 ]);
 
 var line31 = new collie.Polyline({
     closePath : true
-}).addTo(layer);
+    }).addTo(layer);
 line31.setPointData([
     
     [445, 230],
@@ -85,7 +90,7 @@ line31.setPointData([
 
 var line4 = new collie.Polyline({
     closePath : true
-}).addTo(layer);
+    }).addTo(layer);
 line4.setPointData([
     [905, 60],
     [905, 230],
@@ -95,64 +100,101 @@ line4.setPointData([
 
 var line41 = new collie.Polyline({
     closePath : true
-}).addTo(layer);
+    }).addTo(layer);
 line41.setPointData([
     
     [905, 230],
     [860,230]
 ]);
-/*
-var ejemplo = new collie.Text({
-        width : 35,
-        height : 35,
-        y: 95,
-        velocityX : 200,
-        backgroundColor : '#6B33FF',
-        fontSize:30,
-        rangeX:[0,800],
-        rangeY:[0,270],
-        fontColor: "black",
-    }).text(" 1");
+
+function refreshListos() {
+    inicio = 355;
+    for (var i = 0; i < procesosListo.length; i++) {
+        procesosListo[i].o.set("velocityX",200);
+        procesosListo[i].o.set("rangeX",[0,inicio]);
+        inicio -=40;
+    }
+}
+function refreshEjecutando() {
+    seguir=true;
+    var nuevo = procesosListo.shift();
+    procesosEjecutando.push(nuevo);
+//    console.log("ejecutando !!!!!!!!!!!!!!!!1");
+//  console.log(procesosEjecutando);
+        procesosEjecutando[0].o.set("rangeX",[0,663]);
+
+}
+var limite;
+function refreshTiempo() {
+    //limite = count + procesosEjecutando[0].time;
+    console.log("refreshTiempo");
+    procesosEjecutando[0].time --;
+    cont2++;
+    console.log("contador 2  = "+cont2);
+    if (cont2 >=5 ) {
+        cont2 = 0;
+        seguir=false;
+        console.log("refreshToBloqueo !!!!!!!!!!1");
+        refreshToBloqueo();
+    }
+    if(procesosEjecutando.length != 0){
+        if (procesosEjecutando[0].time == 0) {
+            console.log( "tiempo = "+procesosEjecutando[0].time);
+            cont2 = 0;
+            seguir=false;
+            refreshFinalizado();
+        }
+    }
+}
 
 
+function refreshToBloqueo() {
+    var nuevoB = procesosEjecutando.pop();
+    nuevoB.o.set("rangeX",[0,933]);
+    nuevoB.o.set("rangeY",[0,230]);
+    nuevoB.o.set("velocityY",200);
+    nuevoB.o.set("rangeX",[500,933]);
+    nuevoB.o.set("velocityX",-200);
+    procesosBloqueado.push(nuevoB);
 
+}
+function refreshBloqueado() {
+  var hola =1;  
+}
+function refreshFinalizado(argument) {
+    var hoo =1;
+}
 
-    var arreglo = new Array();
-    var arreglo2 = new Array();
+var seguir  = true;
+var cont2 = 0;
 
-    arreglo[0] = {id:2, time:5, o:null};
-    arreglo[0].o = new collie.Text({
-        width : 35,
-        height : 35,
-        y: 55,
-        velocityX : 100,
-        backgroundColor : '#6B33FF',
-        fontSize:30,
-        rangeX:[0,550],
-        rangeY:[0,270],
-        fontColor: "black",
-    }).text(" 1");
-
-
-    arreglo.push({ id: 3, time:4 ,o:ejemplo});
-    */
-/*
-function createEv(id,time, recursos) {
-    nuevo = new collie.Text({
-        width : 35,
-        height : 35,
-        y: 95,
-        velocityX : 100,
-        backgroundColor : '#6B33FF',
-        fontSize:30,
-        rangeX:[0,330],
-        rangeY:[0,270],
-        fontColor: "black",
-    }).text(id);
-*/
     collie.Timer.repeat(function (e) {
         console.log(e.count);
-        console.log(procesosGrande);
+        if (procesosListo.length != 0 ) {
+            refreshListos();
+            if(procesosListo[0].o.get("x") == 355 ){
+                console.log("procesos ejecutando");
+                //console.log(procesosEjecutando);
+                if (procesosEjecutando.length == 0) {
+                    refreshEjecutando();
+                    return;
+                }
+            }
+        }
+                
+        console.log("tama "+procesosEjecutando.length);
+        if (procesosEjecutando.length == 1) {
+            if (seguir) {
+                //refreshToBloqueo();
+
+                if (procesosEjecutando[0].o.get("x")==663) {
+                    console.log("p ejecutando X = ");
+                    console.log(procesosEjecutando[0].o.get("x"));
+
+                    refreshTiempo();    
+                }
+            }
+        }
 /*
 //        console.log(app.procesos);
 

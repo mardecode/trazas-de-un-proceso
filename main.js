@@ -1,4 +1,4 @@
-var procesosGrande = new Array()
+
 var app = new Vue({
   el: '#main',
   data: {
@@ -9,18 +9,20 @@ var app = new Vue({
   methods: {
     crearProceso: function () {
 
-      if( this.newProcess.time != ""){
-         
+      if( this.newProcess.time != "" && procesosListo.length < 9){
+         console.log(procesosListo.length);
         var nuevo = new collie.Text({
             width : 35,
             height : 35,
-            y: 95,
+            y: 45,
+            x: 30,
             backgroundColor : '#6B33FF',
-            fontSize:30,          
+            fontSize:20,          
             fontColor: "black",
+            textAlign:'center'
         }).text(" "+this.contador).addTo(layer);
         
-        procesosGrande.push({id:this.contador, time:this.newProcess.time , o:nuevo});
+        procesosListo.push({id:this.contador, time:this.newProcess.time , o:nuevo});
 
         
         this.newProcess.time = "";
