@@ -147,15 +147,25 @@ function refreshTiempo() {
     }
 }
 
+function derecha() {
+    procesosBloqueado.lastIndexOf
+}
 
 function refreshToBloqueo() {
     var nuevoB = procesosEjecutando.pop();
-    nuevoB.o.set("rangeX",[0,933]);
-    nuevoB.o.set("rangeY",[0,230]);
-    nuevoB.o.set("velocityY",200);
-    nuevoB.o.set("rangeX",[500,933]);
-    nuevoB.o.set("velocityX",-200);
     procesosBloqueado.push(nuevoB);
+
+    nuevoB.o.set("rangeX",[500,887]);
+    nuevoB.o.set("rangeY",[0,210]);
+
+    setTimeout(function(){
+   // nuevoB.o.set("velocityX",-200);
+    nuevoB.o.set("velocityY",200);
+    },1500);
+    setTimeout(function(){
+        nuevoB.o.set("velocityX",-200);
+    //nuevoB.o.set("velocityY",200);
+    },2800);
 
 }
 function refreshBloqueado() {
