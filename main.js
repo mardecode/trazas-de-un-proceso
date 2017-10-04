@@ -7,6 +7,63 @@ var app = new Vue({
     contador: 1
   },
   methods: {
+    Fteclado: function (){
+      for (var i = 0; i < procesosBloqueado.length; i++) {
+
+        var index = procesosBloqueado[i].recursos.indexOf("teclado");
+        if (index > -1 ){
+          procesosBloqueado[i].recursos.splice( index, 1);
+      }
+
+      }
+    },
+
+    Fmouse: function (){
+      for (var i = 0; i < procesosBloqueado.length; i++) {
+
+        var index = procesosBloqueado[i].recursos.indexOf("mouse");
+        if (index > -1 ){
+          procesosBloqueado[i].recursos.splice( index, 1);
+        }
+      }
+    },
+    Fparlantes: function (){
+      for (var i = 0; i < procesosBloqueado.length; i++) {
+
+        var index = procesosBloqueado[i].recursos.indexOf("parlantes");
+        if (index > -1 ){
+          procesosBloqueado[i].recursos.splice( index, 1);
+        }
+      }
+    },
+    Fimpresora: function (){
+      for (var i = 0; i < procesosBloqueado.length; i++) {
+
+        var index = procesosBloqueado[i].recursos.indexOf("impresora");
+        if (index > -1 ){
+          procesosBloqueado[i].recursos.splice( index, 1);
+        }
+      }
+    },
+    Fmicrofono: function (){
+      for (var i = 0; i < procesosBloqueado.length; i++) {
+
+        var index = procesosBloqueado[i].recursos.indexOf("microfono");
+        if (index > -1 ){
+          procesosBloqueado[i].recursos.splice( index, 1);
+        }
+      }
+    },
+    Fcamara: function (){
+      for (var i = 0; i < procesosBloqueado.length; i++) {
+
+        var index = procesosBloqueado[i].recursos.indexOf("camara");
+        if (index > -1 ){
+          procesosBloqueado[i].recursos.splice( index, 1);
+        }
+      }
+    },
+
     crearProceso: function () {
 
       if( this.newProcess.time != "" && procesosListo.length < 9){
