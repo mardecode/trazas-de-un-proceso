@@ -1,8 +1,7 @@
  var procesosListo = new Array();
  var procesosEjecutando = new Array();
  var procesosBloqueado = new Array();
-
-var tiempoLimite = 5;
+var terminoMov = false;
 
  var layer = new collie.Layer({
         width : 1300,
@@ -106,8 +105,6 @@ line4.setPointData([
     [905, 230],
     
 ]);
-
-
 var line41 = new collie.Polyline({
     closePath : true
     }).addTo(layer);
@@ -129,49 +126,34 @@ function refreshEjecutando() {
     seguir=true;
     var nuevo = procesosListo.shift();
     procesosEjecutando.push(nuevo);
-//    console.log("ejecutando !!!!!!!!!!!!!!!!1");
-//  console.log(procesosEjecutando);
-        procesosEjecutando[0].o.set("rangeX",[0,663]);
-        tiempo1.text(procesosEjecutando[0].time);
-
+    procesosEjecutando[0].o.set("rangeX",[0,663]);
 }
-var limite;
+
 function refreshTiempo() {
-    //limite = count + procesosEjecutando[0].time;
-    console.log("refreshTiempo");
-    //tiempo1.text(procesosEjecutando[0].time);
+    cont2++;
     procesosEjecutando[0].time --;
-    tiempo1.text(procesosEjecutando[0].time);
-    //console.log("time procesos  = "+procesosEjecutando[0].time);
-    if (cont2 >=5 ) {
-        cont2 = 0;
-        seguir=false;
-        console.log("refreshToBloqueo !!!!!!!!!!1");
-        refreshToBloqueo();
-        setTimeout(function(){
-           // tiempo1.text("- -");
-        },1500);
-    }
+    procesosEjecutando[0].o.text(procesosEjecutando[0].time);
+    tiempo1.text(cont2);
+
     if(procesosEjecutando.length != 0){
-        if (procesosEjecutando[0].time == 0) {
-            console.log( "tiempo = "+procesosEjecutando[0].time);
+        if (procesosEjecutando[0].time <= 0) {
+            //console.log( "tiempo = "+procesosEjecutando[0].time);
             cont2 = 0;
             seguir=false;
-            refreshFinalizado();
-            tiempo1.text(cont2);
-            setTimeout(function(){
-                tiempo1.text("- -");
-            },1500);
+            refreshFinalizado();    
         }
     }
-    cont2++;
+
+    if (cont2 >4 ) {
+        cont2 = 0;
+        seguir=false;
+        //console.log("refreshToBloqueo !!!!!!!!!!1");
+        refreshToBloqueo();
+    }
 }
 
-function derecha() {
-    procesosBloqueado.lastIndexOf
-}
-var terminoMov = false;
 
+tiempoEspera = 1500;
 function refreshToBloqueo() {
     terminoMov = false;
     var nuevoB = procesosEjecutando.pop();
@@ -181,14 +163,14 @@ function refreshToBloqueo() {
     nuevoB.o.set("rangeY",[0,210]);
 
     setTimeout(function(){
-   // nuevoB.o.set("velocityX",-200);
     nuevoB.o.set("velocityY",200);
-    },1500);
+    },1800,nuevoB);
+
     setTimeout(function(){
         nuevoB.o.set("velocityX",-200);
         terminoMov= true;
     //nuevoB.o.set("velocityY",200);
-    },2800);
+    },2100,nuevoB);
 
 }
 function refreshBloqueado() {
@@ -197,19 +179,19 @@ function refreshBloqueado() {
     for (var i = 0; i < procesosBloqueado.length; i++) {
         procesosBloqueado[i].o.set("velocityX",-200);
         if(procesosBloqueado[i].recursos.length != 0){
-            inicio += 40;
             procesosBloqueado[i].o.set("rangeX",[inicio,1000]);
+            inicio += 40;
         }
         else{
             procesosBloqueado[i].o.set("rangeX",[30,1000]);
-            console.log("1", procesosBloqueado[i]);
+            console.log("1", [i]);
             var ip  = i;
             setTimeout(function(){
                 console.log("2", ip , procesosBloqueado ,procesosBloqueado[i]);
                 procesosBloqueado[ip].o.set("rangeY",[45,230]);
                 procesosBloqueado[ip].o.set("velocityY",-200);
                 procesosListo.push(procesosBloqueado.shift() ) ;  
-            },4000, ip);
+            },3600, ip);
         }
         
     }
@@ -221,7 +203,7 @@ function refreshFinalizado(argument) {
     
     setTimeout(function(){
         nuevoB.o.leave();
-    }, 5000);
+    }, 5000, nuevoB);
     
 }
 
@@ -229,12 +211,12 @@ var seguir  = true;
 var cont2 = 0;
 
     collie.Timer.repeat(function (e) {
+        //tiempo1.text(e.count);
         console.log(e.count);
         if (procesosListo.length != 0 ) {
             refreshListos();
             if(procesosListo[0].o.get("x") == 355 ){
                 console.log("procesos ejecutando");
-                //console.log(procesosEjecutando);
                 if (procesosEjecutando.length == 0) {
                     refreshEjecutando();
                     return;
@@ -251,7 +233,7 @@ var cont2 = 0;
                     console.log("p ejecutando X = ");
                     console.log(procesosEjecutando[0].o.get("x"));
 
-                    refreshTiempo();    
+                    refreshTiempo(e.count);    
                 }
             }
         }
@@ -260,33 +242,6 @@ var cont2 = 0;
 
             refreshBloqueado();
         }
-/*
-//        console.log(app.procesos);
-
-        console.log(arreglo);
-        if(e.count == 1){
-            //arreglo[0].o.addTo(layer);
-        }
-        
-        if (e.count ==5) {
-            //arreglo[0].set("velocityY",100);
-            arreglo[1].o.addTo(layer);
-        }
-        if (e.count == 10 ) {
-            arreglo.pop();
-            arreglo2.push(ejemplo);
-            arreglo2[0].set("rangeX",[0,1000]);
-        }
-
-        if (e.count == 15 ) {
-
-            //collie.Renderer.stop();
-            arreglo2[0].leave();
-        }
-
-*/
-
-
     }, 1000,{loop:0});
      
     

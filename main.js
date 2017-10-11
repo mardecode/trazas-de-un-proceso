@@ -8,60 +8,60 @@ var app = new Vue({
   },
   methods: {
     Fteclado: function (){
-      for (var i = 0; i < procesosBloqueado.length; i++) {
+      
 
-        var index = procesosBloqueado[i].recursos.indexOf("teclado");
+        var index = procesosBloqueado[0].recursos.indexOf("teclado");
         if (index > -1 ){
-          procesosBloqueado[i].recursos.splice( index, 1);
+          procesosBloqueado[0].recursos.splice( index, 1);
       }
 
-      }
+      
     },
 
     Fmouse: function (){
-      for (var i = 0; i < procesosBloqueado.length; i++) {
+      
 
-        var index = procesosBloqueado[i].recursos.indexOf("mouse");
+        var index = procesosBloqueado[0].recursos.indexOf("mouse");
         if (index > -1 ){
-          procesosBloqueado[i].recursos.splice( index, 1);
+          procesosBloqueado[0].recursos.splice( index, 1);
         }
-      }
+      
     },
     Fparlantes: function (){
-      for (var i = 0; i < procesosBloqueado.length; i++) {
 
-        var index = procesosBloqueado[i].recursos.indexOf("parlantes");
+
+        var index = procesosBloqueado[0].recursos.indexOf("parlantes");
         if (index > -1 ){
-          procesosBloqueado[i].recursos.splice( index, 1);
+          procesosBloqueado[0].recursos.splice( index, 1);
         }
-      }
+
     },
     Fimpresora: function (){
-      for (var i = 0; i < procesosBloqueado.length; i++) {
 
-        var index = procesosBloqueado[i].recursos.indexOf("impresora");
+
+        var index = procesosBloqueado[0].recursos.indexOf("impresora");
         if (index > -1 ){
-          procesosBloqueado[i].recursos.splice( index, 1);
+          procesosBloqueado[0].recursos.splice( index, 1);
         }
-      }
+
     },
     Fmicrofono: function (){
-      for (var i = 0; i < procesosBloqueado.length; i++) {
 
-        var index = procesosBloqueado[i].recursos.indexOf("microfono");
+
+        var index = procesosBloqueado[0].recursos.indexOf("microfono");
         if (index > -1 ){
-          procesosBloqueado[i].recursos.splice( index, 1);
+          procesosBloqueado[0].recursos.splice( index, 1);
         }
-      }
+      
     },
     Fcamara: function (){
-      for (var i = 0; i < procesosBloqueado.length; i++) {
+      
 
-        var index = procesosBloqueado[i].recursos.indexOf("camara");
+        var index = procesosBloqueado[0].recursos.indexOf("camara");
         if (index > -1 ){
-          procesosBloqueado[i].recursos.splice( index, 1);
+          procesosBloqueado[0].recursos.splice( index, 1);
         }
-      }
+      
     },
 
     crearProceso: function () {
@@ -77,7 +77,7 @@ var app = new Vue({
             fontSize:20,          
             fontColor: "black",
             textAlign:'center'
-        }).text(" "+this.contador).addTo(layer);
+        }).text(" "+this.newProcess.time).addTo(layer);
         
         procesosListo.push({
           id:this.contador,
