@@ -115,6 +115,13 @@ line41.setPointData([
 ]);
 
 function refreshListos() {
+
+    procesosListo.sort(function(a,b){
+        if(a.prioridad > b.prioridad) return 1;
+        if(a.prioridad < b.prioridad) return -1;
+        return 0;
+    });
+
     inicio = 355;
     for (var i = 0; i < procesosListo.length; i++) {
         procesosListo[i].o.set("velocityX",200);
@@ -122,6 +129,7 @@ function refreshListos() {
         inicio -=40;
     }
 }
+
 function refreshEjecutando() {
     seguir=true;
     var nuevo = procesosListo.shift();
@@ -132,8 +140,9 @@ function refreshEjecutando() {
 function refreshTiempo() {
     cont2++;
     procesosEjecutando[0].time --;
-    procesosEjecutando[0].o.text(procesosEjecutando[0].time);
-    tiempo1.text(cont2);
+    //procesosEjecutando[0].o.text(procesosEjecutando[0].time);
+    //tiempo1.text(cont2);
+    tiempo1.text(procesosEjecutando[0].time);
 
     if(procesosEjecutando.length != 0){
         if (procesosEjecutando[0].time <= 0) {
@@ -144,16 +153,27 @@ function refreshTiempo() {
         }
     }
 
+    
+    /*
     if (cont2 >4 ) {
         cont2 = 0;
         seguir=false;
         //console.log("refreshToBloqueo !!!!!!!!!!1");
         refreshToBloqueo();
     }
+    */
+    if(procesosListo.length!=0 && procesosEjecutando.length!=0)
+    if(procesosEjecutando[0].prioridad > procesosListo[0].prioridad){
+        cont2 = 0;
+        seguir=false;
+        refreshToBloqueo();
+    }
+    
 }
 
 
 tiempoEspera = 1500;
+
 function refreshToBloqueo() {
     terminoMov = false;
     var nuevoB = procesosEjecutando.pop();
@@ -173,26 +193,34 @@ function refreshToBloqueo() {
     },2100,nuevoB);
 
 }
+
+
+
 function refreshBloqueado() {
     console.log("Here BLOQUEADO");
     inicio = 500;
     for (var i = 0; i < procesosBloqueado.length; i++) {
+
         procesosBloqueado[i].o.set("velocityX",-200);
-        if(procesosBloqueado[i].recursos.length != 0){
+        
+        /*if(procesosBloqueado[i].recursos.length != 0){
             procesosBloqueado[i].o.set("rangeX",[inicio,1000]);
             inicio += 40;
         }
-        else{
+
+        else{ */
             procesosBloqueado[i].o.set("rangeX",[30,1000]);
-            console.log("1", [i]);
-            var ip  = i;
-            setTimeout(function(){
-                console.log("2", ip , procesosBloqueado ,procesosBloqueado[i]);
-                procesosBloqueado[ip].o.set("rangeY",[45,230]);
-                procesosBloqueado[ip].o.set("velocityY",-200);
+            //console.log("1", [i]);
+            //var ip  = i;
+            if(procesosBloqueado[i].o.get("x") == 30){
+                console.log("2", i , procesosBloqueado ,procesosBloqueado[i]);
+                procesosBloqueado[i].o.set("rangeY",[45,230]);
+                procesosBloqueado[i].o.set("velocityY",-200);
                 procesosListo.push(procesosBloqueado.shift() ) ;  
-            },3600, ip);
-        }
+            }
+
+            
+        //}
         
     }
 }
@@ -210,9 +238,10 @@ function refreshFinalizado(argument) {
 var seguir  = true;
 var cont2 = 0;
 
-    collie.Timer.repeat(function (e) {
+collie.Timer.repeat(function (e) {
         //tiempo1.text(e.count);
         console.log(e.count);
+
         if (procesosListo.length != 0 ) {
             refreshListos();
             if(procesosListo[0].o.get("x") == 355 ){
@@ -225,6 +254,7 @@ var cont2 = 0;
         }
                 
         console.log("tama "+procesosEjecutando.length);
+
         if (procesosEjecutando.length == 1) {
             if (seguir) {
                 //refreshToBloqueo();
@@ -233,15 +263,17 @@ var cont2 = 0;
                     console.log("p ejecutando X = ");
                     console.log(procesosEjecutando[0].o.get("x"));
 
-                    refreshTiempo(e.count);    
+                    refreshTiempo(e.count);
                 }
             }
         }
+        
 
         if(procesosBloqueado.length != 0 && terminoMov){
 
             refreshBloqueado();
         }
+        
     }, 1000,{loop:0});
      
     

@@ -3,7 +3,7 @@ var app = new Vue({
   el: '#main',
   data: {
     procesos: [],
-    newProcess: { time:"", recursos: []},
+    newProcess: { time:"", recursos: [] , prioridad:""},
     contador: 1
   },
   methods: {
@@ -77,17 +77,19 @@ var app = new Vue({
             fontSize:20,          
             fontColor: "black",
             textAlign:'center'
-        }).text(" "+this.newProcess.time).addTo(layer);
+        }).text(" "+this.newProcess.prioridad).addTo(layer);
         
         procesosListo.push({
           id:this.contador,
           time:this.newProcess.time , 
           o:nuevo ,
+          prioridad: this.newProcess.prioridad,
           recursos:this.newProcess.recursos
         });
 
         
         this.newProcess.time = "";
+        this.newProcess.prioridad = "";
         this.newProcess.recursos = [];
         this.contador++;  
       }
